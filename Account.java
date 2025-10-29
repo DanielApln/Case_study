@@ -78,8 +78,8 @@ class Account {
     }
 
     public void setGender(String gender) throws IOException {
-        genderValidation(gender);
-        this.gender = gender;
+        String genderValidated = genderValidation(gender);
+        this.gender = genderValidated;
     }
 
     public String getGender() {
@@ -154,7 +154,7 @@ class Account {
             writer.write("Father's Name: " + fatherName + "\n");
             writer.write("Mother's Name: " + motherName + "\n");
             writer.write("Contact No: " + contactNo + "\n");
-            writer.write("Balance: ₱" + String.format("%.2f", balance) + "\n");
+            writer.write("Balance: " + String.format("%.2f", balance) + "\n");
             writer.write("=====================================\n\n");
             System.out.println(" Account successfully saved to NewAccount.txt!");
         } catch (IOException e) {
@@ -178,7 +178,7 @@ class Account {
         }
     }
 
-    public static void firstNameValidation(String input) throws IOException {
+    private static void firstNameValidation(String input) throws IOException {
         if (input == null || input.isEmpty()) {
             throw new IOException("First Name cannot be blank.");
         }
@@ -196,7 +196,7 @@ class Account {
         }
     }
 
-    public static void middleNameValidation(String input) throws IOException {
+    private static void middleNameValidation(String input) throws IOException {
         if (input == null || input.isEmpty()) {
             throw new IOException("Middle Name cannot be blank.");
         }
@@ -214,7 +214,7 @@ class Account {
         }
     }
 
-    public static void lastNameValidation(String input) throws IOException {
+    private static void lastNameValidation(String input) throws IOException {
         if (input == null || input.isEmpty()) {
             throw new IOException("Last Name cannot be blank.");
         }
@@ -232,7 +232,7 @@ class Account {
         }
     }
 
-    public static void fatherNameValidation(String input) throws IOException {
+    private static void fatherNameValidation(String input) throws IOException {
         if (input == null || input.isEmpty()) {
             throw new IOException("Father's Name cannot be blank.");
         }
@@ -250,7 +250,7 @@ class Account {
         }
     }
 
-    public static void motherNameValidation(String input) throws IOException {
+    private static void motherNameValidation(String input) throws IOException {
         if (input == null || input.isEmpty()) {
             throw new IOException("Mother's Name cannot be blank.");
         }
@@ -268,7 +268,7 @@ class Account {
         }
     }
 
-    public static void addressValidation(String input) throws IOException {
+    private static void addressValidation(String input) throws IOException {
         if (input == null || input.trim().isEmpty()) {
             throw new IOException("Address cannot be blank.");
         }
@@ -286,7 +286,7 @@ class Account {
         }
     }
 
-    public void contactValidation(String num) throws IllegalArgumentException {
+    private void contactValidation(String num) throws IllegalArgumentException {
         if (num == null || num.isEmpty()) {
             throw new IllegalArgumentException("Contact Number cannot be blank.");
         }
@@ -304,7 +304,7 @@ class Account {
         }
     }
 
-    public void validateBirthdate(String inputDate) throws IllegalArgumentException {
+    private void validateBirthdate(String inputDate) throws IllegalArgumentException {
         // 1. Basic Format Check
         if (!inputDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw new IllegalArgumentException("Invalid format! Please use YYYY-MM-DD.");
@@ -324,15 +324,15 @@ class Account {
         }
     }
 
-    public void genderValidation(String genderInput) throws IOException {
+    private String genderValidation(String genderInput) throws IOException {
         if (genderInput == null || genderInput.isBlank()) {
             throw new IOException("Gender cannot be blank.");
         }
 
         if (genderInput.equalsIgnoreCase("M") || genderInput.equalsIgnoreCase("Male")) {
-            this.gender = "Male";
+            return "Male";
         } else if (genderInput.equalsIgnoreCase("F") || genderInput.equalsIgnoreCase("Female")) {
-            this.gender = "Female";
+            return "Female";
         } else {
             throw new IOException("Invalid gender input. Please enter only 'M', 'F', 'Male', or 'Female'.");
         }

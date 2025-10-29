@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
-        Account newAccount = new Account();
+        
 
         // Menu
         System.out.println("╔═══════════════════════════════════════════╗");
@@ -29,6 +29,7 @@ public class Main {
 
                         switch (option) {
                             case 1:
+                                Account newAccount = new Account();
                                 newAccount.register(input);
                                 break;
                             case 2:
