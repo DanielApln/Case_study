@@ -34,6 +34,21 @@ class Account {
     public double getBalance() {
         return balance;
     }
+    
+    // Pin code validation method
+    private void validatePin(String pin) throws IllegalArgumentException {
+        if (pin == null || pin.isEmpty()) {
+            throw new IllegalArgumentException("Pin code cannot be empty.");
+        }
+        
+        if (pin.length() != 4) {
+            throw new IllegalArgumentException("Pin code must be exactly 4 digits.");
+        }
+        
+        if (!pin.matches("\\d{4}")) {
+            throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
+        }
+    }
 
     // 💾 Feature: Save Account Data
     private void saveToFile() {
@@ -89,8 +104,18 @@ class Account {
         // --- End Credential Setup ---
 
         // Remaining Account Details
-        System.out.print("Enter Pin code (4 digits): ");
-        pin = sc.nextLine();
+        while (true) {
+            try {
+                System.out.print("Enter Pin code (4 digits): ");
+                String pinInput = sc.nextLine();
+                validatePin(pinInput);
+                pin = pinInput;
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(" Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+            }
+        }
 
         System.out.print("Enter First Name: ");
         firstName = sc.nextLine();
