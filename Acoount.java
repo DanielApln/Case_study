@@ -76,26 +76,6 @@ class Account {
             }
         }
 
-        private static String toTitleCase(String input) {
-            if (input == null || input.isEmpty()) {
-                return "";
-            }
-            
-            String processedInput = input.trim().toLowerCase();
-            
-            String[] words = processedInput.split(" ");
-            StringBuilder titleCaseString = new StringBuilder();
-            
-            for (String word : words) {
-                if (!word.isEmpty()) {
-                    String capitalizedWord = word.substring(0, 1).toUpperCase() + word.substring(1);
-                    
-                    titleCaseString.append(capitalizedWord).append(" ");
-                }
-            }
-                    return titleCaseString.toString().trim();
-        }
-
         public static void firstNameValidation (String input) throws IOException{
 			if (input == null || input.isEmpty()) {
 				throw new IOException("First Name cannot be blank.");
