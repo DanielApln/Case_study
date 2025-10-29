@@ -12,14 +12,14 @@ class Account {
     // Better Encapsulation: Make fields private and use public getters/setters if needed
     private int accountNo;
     private String pin;
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    private String firstName = "";
+    private String middleName = "";
+    private String lastName = "";
     private String birthdate;
     private String gender;
-    private String address;
-    private String fatherName;
-    private String motherName;
+    private String address = "";
+    private String fatherName = "";
+    private String motherName = "";
     private String contactNo;
     private double balance = 500.0; // fixed initial deposit (constant value 500)
 
@@ -62,24 +62,142 @@ class Account {
 
     //validation Start
     // Pin code validation method
-    private void validatePin(String pin) throws IllegalArgumentException {
-        if (pin == null || pin.isEmpty()) {
-            throw new IllegalArgumentException("Pin code cannot be empty.");
-        }
-        
-        if (!pin.matches("\\d{4}")) {
-            throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
+        private void validatePin(String pin) throws IllegalArgumentException {
+            if (pin == null || pin.isEmpty()) {
+                throw new IllegalArgumentException("Pin code cannot be empty.");
+            }
+            
+            if (!pin.matches("\\d{4}")) {
+                throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
+            }
+
+            if (pin.length() != 4) {
+                throw new IllegalArgumentException("Pin code must be exactly 4 digits.");
+            }
         }
 
-        if (pin.length() != 4) {
-            throw new IllegalArgumentException("Pin code must be exactly 4 digits.");
-        }
-        
-        
-    }
+        public static void firstNameValidation (String input) throws IOException{
+			if (input == null || input.isEmpty()) {
+				throw new IOException("First Name cannot be blank.");
+			}
+			
+			for (int i = 0; i < input.length(); i++) {
+		        char ch = input.charAt(i);
+		        
+		        if (Character.isLetter(ch)) {
+		        	continue;
+		        }
+		        else if(ch == ' ') {
+		        	continue;
+		        }
+		        else {
+		        	throw new IOException("First Name cannot contain any special character."); 
+		        }
+		    }
+    	}
+		
+		public static void middleNameValidation (String input) throws IOException{
+			if(input == null || input.isEmpty()) {
+				throw new IOException("Middle Name cannot be blank.");
+			}
+			
+			for (int i = 0; i < input.length(); i++) {
+		        char ch = input.charAt(i);
+		        
+		        if (Character.isLetter(ch)) {
+		        	continue;
+		        }
+		        else if(ch == ' ') {
+		        	continue;
+		        }
+		        else {
+		        	throw new IOException("Middle Name cannot contain any special character."); 
+		        }
+		    }
+		}
+		
+		public static void lastNameValidation (String input) throws IOException{
+			if(input == null || input.isEmpty()) {
+				throw new IOException("Last Name cannot be blank.");
+			}
+			
+			for (int i = 0; i < input.length(); i++) {
+		        char ch = input.charAt(i);
+		        
+		        if (Character.isLetter(ch)) {
+		        	continue;
+		        }
+		        else if(ch == ' ') {
+		        	continue;
+		        }
+		        else {
+		        	throw new IOException("Last Name cannot contain any special character."); 
+		        }
+		    }
+		}
+		
+		public static void fatherNameValidation (String input) throws IOException{
+			if(input == null || input.isEmpty()) {
+				throw new IOException("Father's Name cannot be blank.");
+			}
+			
+			for (int i = 0; i < input.length(); i++) {
+		        char ch = input.charAt(i);
+		        
+		        if (Character.isLetter(ch)) {
+		        	continue;
+		        }
+		        else if(ch == ' ') {
+		        	continue;
+		        }
+		        else {
+		        	throw new IOException("Father's Name cannot contain any special character."); 
+		        }
+		    }
+		}
+		
+		public static void motherNameValidation (String input) throws IOException {
+			if(input == null || input.isEmpty()) {
+				throw new IOException("Mother's Name cannot be blank.");
+			}
+			
+			for (int i = 0; i < input.length(); i++) {
+		        char ch = input.charAt(i);
+		        
+		        if (Character.isLetter(ch)) {
+		        	continue;
+		        }
+		        else if(ch == ' ') {
+		        	continue;
+		        }
+		        else {
+		        	throw new IOException("Mother's Name cannot contain any special character."); 
+		        }
+		    }		
+		}
+		
+		public static void addressValidation (String input) throws IOException {
+			if(input == null || input.trim().isEmpty()) {
+				throw new IOException("Address cannot be blank.");
+			}
+			
+			for (int i = 0; i < input.length(); i++) {
+		        char ch = input.charAt(i);
+		        
+		        if (Character.isLetterOrDigit(ch)) {
+		        	continue;
+		        }
+		        else if(ch == ' ' || ch == '#' || ch == ',') {
+		        	continue;
+		        }
+		        else {
+		        	throw new IOException("Address cannot contain some special character."); 
+		        }
+		    }
+		}
 
     private void validateContact(String num) throws IllegalArgumentException {
-        if (num == null || num.isBlank()) {
+        if (num == null || num.isEmpty()) {
             throw new IllegalArgumentException("Contact Number cannot be blank.");
         }
         
@@ -154,14 +272,46 @@ class Account {
             }
         }
 
-        System.out.print("Enter First Name: ");
-        firstName = sc.nextLine();
+        while (true) {
+			try {
+				System.out.print("Enter First Name: ");
+				firstName = sc.nextLine();
+				
+				firstNameValidation(firstName);
+				break;
+			} catch (IOException e) {
+				System.out.println("Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+			}
+		}
 
-        System.out.print("Enter Middle Name: ");
-        middleName = sc.nextLine();
+		while (true) {
+			try {
+				System.out.print("Enter Middle Name: ");
+				middleName = sc.nextLine();
+				
+				middleNameValidation(middleName);
+				break;
+			} catch (IOException e)
+			{
+				System.out.println("Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+			}
+		}
 
-        System.out.print("Enter Last Name: ");
-        lastName = sc.nextLine();
+		while (true) {
+			try {
+				System.out.print("Enter Last Name: ");
+				lastName = sc.nextLine();
+				
+				lastNameValidation(lastName);
+				break;
+			} catch (IOException e)
+			{
+				System.out.println("Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+			}
+		}
 
         System.out.print("Enter Birthdate (YYYY-MM-DD): ");
         birthdate = sc.nextLine();
@@ -178,14 +328,47 @@ class Account {
             }
         }
         
-        System.out.print("Enter Address: ");
-        address = sc.nextLine();
+		while (true) {
+			try {
+				System.out.print("Enter Address: ");
+				address = sc.nextLine();
+				
+			    addressValidation(address);
+				break;
+			} catch (IOException e)
+			{
+				System.out.println("Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+			}
+		}
 
-        System.out.print("Enter Father's Name: ");
-        fatherName = sc.nextLine();
+		while (true) {
+			try {
+				System.out.print("Enter Father's Name: ");
+				fatherName = sc.nextLine();
+				
+				fatherNameValidation(fatherName);
+				break;
+			} catch (IOException e)
+			{
+				System.out.println("Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+			}
+		}
 
-        System.out.print("Enter Mother's Name: ");
-        motherName = sc.nextLine();
+		while (true) {
+			try {
+				System.out.print("Enter Mother's Name: ");
+				motherName = sc.nextLine();
+				
+				motherNameValidation(motherName);
+				break;
+			} catch (IOException e)
+			{
+				System.out.println("Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+			}
+		}
 
       while (true) {
             System.out.print("Enter Contact No (11 digits): ");
@@ -205,5 +388,4 @@ class Account {
 
         saveToFile();
     }
-    
 }

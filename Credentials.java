@@ -40,7 +40,7 @@ public class Credentials {
     // --- Validation Methods (Can be private as they are only used internally) ---
     
     private void validateUsername(String input) throws IOException {
-        if (input == null || input.isBlank()) {
+        if (input == null || input.isEmpty()) {
             throw new IOException("Username cannot be blank.");
         }
 
@@ -51,7 +51,7 @@ public class Credentials {
     }
 
     private void validatePassword(String input) throws IOException {
-        if (input == null || input.isBlank()) {
+        if (input == null || input.isEmpty()) {
             throw new IOException("Password cannot be blank.");
         }
 
