@@ -148,9 +148,18 @@ class Account {
         System.out.print("Enter Birthdate (YYYY-MM-DD): ");
         birthdate = sc.nextLine();
 
-        System.out.print("Enter Gender: ");
-        gender = sc.nextLine();
-
+        while (true) {
+            try {
+                System.out.print("Enter Gender: ");
+                // Delegate the responsibility to the Credentials object
+                credentials.setUsername(sc.nextLine());
+                break;
+            } catch (IOException e) {
+                System.out.println(" Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+            }
+        }
+        
         System.out.print("Enter Address: ");
         address = sc.nextLine();
 
