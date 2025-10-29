@@ -318,7 +318,7 @@ class Account {
 
         while (true) {
             try {
-                System.out.print("Enter Gender (M/F/Male/Female): ");
+                System.out.print("Enter Gender (Male/Female): ");
                 String genderInput = sc.nextLine();
                 validateGender(genderInput);
                 break;
