@@ -84,11 +84,6 @@ class Account {
             }
         }
         // --- End Credential Setup ---
-
-
-      
-      //gagawin ko toh 
-
         System.out.print("Enter Pin code: ");
         pin = sc.nextLine();
 

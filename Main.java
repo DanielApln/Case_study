@@ -12,7 +12,6 @@ public class Main {
         // Register user
         //newAccount.register(sc);
 
-
         // Menu
         System.out.println("╔═══════════════════════════════════════════╗");
         System.out.println("║   PERSONAL NEW BANK ACCOUNT SYSTEM       ║");
