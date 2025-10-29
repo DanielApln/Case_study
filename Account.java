@@ -42,7 +42,7 @@ class Account {
     }
 
     public void setFirstName(String firstName) throws IOException {
-        firstNameValidation(firstName);
+        validateName(firstName, "First Name");
         this.firstName = firstName;
     }
 
@@ -51,7 +51,7 @@ class Account {
     }
 
     public void setMiddleName(String middleName) throws IOException {
-        middleNameValidation(middleName);
+        validateName(middleName, "Middle Name");
         this.middleName = middleName;
     }
 
@@ -60,7 +60,7 @@ class Account {
     }
 
     public void setLastName(String lastName) throws IOException {
-        lastNameValidation(lastName);
+        validateName(lastName, "Last Name");
         this.lastName = lastName;
     }
 
@@ -96,7 +96,7 @@ class Account {
     }
 
     public void setFatherName(String fatherName) throws IOException {
-        fatherNameValidation(fatherName);
+        validateName(fatherName, "Father's Name");
         this.fatherName = fatherName;
     }
 
@@ -105,7 +105,7 @@ class Account {
     }
 
     public void setMotherName(String motherName) throws IOException {
-        motherNameValidation(motherName);
+        validateName(motherName, "Mother's Name");
         this.motherName = motherName;
     }
 
@@ -178,93 +178,12 @@ class Account {
         }
     }
 
-    private static void firstNameValidation(String input) throws IOException {
+    private static void validateName(String input, String fieldName) throws IOException {
         if (input == null || input.isEmpty()) {
-            throw new IOException("First Name cannot be blank.");
+            throw new IOException(fieldName + " cannot be blank.");
         }
-
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-
-            if (Character.isLetter(ch)) {
-                continue;
-            } else if (ch == ' ') {
-                continue;
-            } else {
-                throw new IOException("First Name cannot contain any special character.");
-            }
-        }
-    }
-
-    private static void middleNameValidation(String input) throws IOException {
-        if (input == null || input.isEmpty()) {
-            throw new IOException("Middle Name cannot be blank.");
-        }
-
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-
-            if (Character.isLetter(ch)) {
-                continue;
-            } else if (ch == ' ') {
-                continue;
-            } else {
-                throw new IOException("Middle Name cannot contain any special character.");
-            }
-        }
-    }
-
-    private static void lastNameValidation(String input) throws IOException {
-        if (input == null || input.isEmpty()) {
-            throw new IOException("Last Name cannot be blank.");
-        }
-
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-
-            if (Character.isLetter(ch)) {
-                continue;
-            } else if (ch == ' ') {
-                continue;
-            } else {
-                throw new IOException("Last Name cannot contain any special character.");
-            }
-        }
-    }
-
-    private static void fatherNameValidation(String input) throws IOException {
-        if (input == null || input.isEmpty()) {
-            throw new IOException("Father's Name cannot be blank.");
-        }
-
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-
-            if (Character.isLetter(ch)) {
-                continue;
-            } else if (ch == ' ') {
-                continue;
-            } else {
-                throw new IOException("Father's Name cannot contain any special character.");
-            }
-        }
-    }
-
-    private static void motherNameValidation(String input) throws IOException {
-        if (input == null || input.isEmpty()) {
-            throw new IOException("Mother's Name cannot be blank.");
-        }
-
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-
-            if (Character.isLetter(ch)) {
-                continue;
-            } else if (ch == ' ') {
-                continue;
-            } else {
-                throw new IOException("Mother's Name cannot contain any special character.");
-            }
+        if (!input.matches("[A-Za-z ]+")) {
+            throw new IOException(fieldName + " cannot contain special characters.");
         }
     }
 
@@ -382,7 +301,7 @@ class Account {
         while (true) {
             try {
                 System.out.print("Enter First Name: ");
-                firstName = sc.nextLine();
+                String firstName = sc.nextLine();
                 setFirstName(firstName);
                 break;
             } catch (IOException e) {
@@ -394,7 +313,7 @@ class Account {
         while (true) {
             try {
                 System.out.print("Enter Middle Name: ");
-                middleName = sc.nextLine();
+                String middleName = sc.nextLine();
                 setMiddleName(middleName);
                 break;
             } catch (IOException e) {
@@ -406,7 +325,7 @@ class Account {
         while (true) {
             try {
                 System.out.print("Enter Last Name: ");
-                lastName = sc.nextLine();
+                String lastName = sc.nextLine();
                 setLastName(lastName);
                 break;
             } catch (IOException e) {
@@ -443,7 +362,7 @@ class Account {
         while (true) {
             try {
                 System.out.print("Enter Address: ");
-                address = sc.nextLine();
+                String address = sc.nextLine();
                 setAddress(address);
                 break;
             } catch (IOException e) {
@@ -455,7 +374,7 @@ class Account {
         while (true) {
             try {
                 System.out.print("Enter Father's Name: ");
-                fatherName = sc.nextLine();
+                String fatherName = sc.nextLine();
                 setFatherName(fatherName);
                 break;
             } catch (IOException e) {
@@ -467,7 +386,7 @@ class Account {
         while (true) {
             try {
                 System.out.print("Enter Mother's Name: ");
-                motherName = sc.nextLine();
+                String motherName = sc.nextLine();
                 setMotherName(motherName);
                 break;
             } catch (IOException e) {
