@@ -96,6 +96,22 @@ class Account {
         }
     }
 
+    public void validateGender(String genderInput) throws IOException {
+        if (genderInput == null || genderInput.isBlank()) {
+            throw new IOException("Gender cannot be blank.");
+        }
+
+        if (genderInput.equalsIgnoreCase("M") || genderInput.equalsIgnoreCase("Male")) {
+            this.gender = "Male";
+        } 
+        else if (genderInput.equalsIgnoreCase("F") || genderInput.equalsIgnoreCase("Female")) {
+            this.gender = "Female";
+        } 
+        else {
+            throw new IOException("Invalid gender input. Please enter only 'M', 'F', 'Male', or 'Female'.");
+        }
+    }
+
     // 🖋️ Feature: Register New Account
     public void register(Scanner sc) {
         System.out.println("\n=== Personal New Bank Account Registration (Account No: " + accountNo + ") ===");
