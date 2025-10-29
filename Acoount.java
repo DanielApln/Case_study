@@ -54,9 +54,9 @@ class Account {
             writer.write("Contact No: " + contactNo + "\n");
             writer.write("Balance: ₱" + String.format("%.2f", balance) + "\n");
             writer.write("=====================================\n\n");
-            System.out.println("✅ Account successfully saved to NewAccount.txt!");
+            System.out.println(" Account successfully saved to NewAccount.txt!");
         } catch (IOException e) {
-            System.out.println("❌ Error saving account to file: " + e.getMessage());
+            System.out.println(" Error saving account to file: " + e.getMessage());
         }
     }
 
@@ -67,13 +67,15 @@ class Account {
             throw new IllegalArgumentException("Pin code cannot be empty.");
         }
         
+        if (!pin.matches("\\d{4}")) {
+            throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
+        }
+
         if (pin.length() != 4) {
             throw new IllegalArgumentException("Pin code must be exactly 4 digits.");
         }
         
-        if (!pin.matches("\\d{4}")) {
-            throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
-        }
+        
     }
 
     private void validateContact(String num) throws IllegalArgumentException {
