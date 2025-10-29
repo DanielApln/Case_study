@@ -88,6 +88,8 @@ class Account {
 
 
       //gagawin ko toh 
+      //ang cute ko
+      //hello, world HAHAHA
 
         System.out.print("Enter Pin code: ");
         pin = sc.nextLine();
