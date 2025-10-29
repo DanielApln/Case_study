@@ -1,8 +1,30 @@
-package MOdified;
+package oopFinalsCaseStudy;
+
 import java.util.Scanner;
 import java.io.IOException;
 
 public class NameAddressValidationMFM {
+	
+    private static String toTitleCase(String input) {
+        if (input == null || input.isBlank()) {
+            return "";
+        }
+        
+        String processedInput = input.trim().toLowerCase();
+        
+        String[] words = processedInput.split(" ");
+        StringBuilder titleCaseString = new StringBuilder();
+        
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                String capitalizedWord = word.substring(0, 1).toUpperCase() + word.substring(1);
+                
+                titleCaseString.append(capitalizedWord).append(" ");
+            }
+        }
+        
+        return titleCaseString.toString().trim();
+    }
     
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in); 
@@ -116,12 +138,12 @@ public class NameAddressValidationMFM {
 		}
 		
 		System.out.println("\n=== Account Information Successfully Added! ===");
-		System.out.println("First Name: " + firstName.toUpperCase());
-		System.out.println("Middle Name: " + middleName.toUpperCase());
-		System.out.println("Last Name: " + lastName.toUpperCase());
-		System.out.println("Father's Name: " + fatherName.toUpperCase());
-		System.out.println("Mother's Name: " + motherName.toUpperCase());
-		System.out.println("Address: " + address.toUpperCase());
+		System.out.println("First Name: " + toTitleCase(firstName));
+		System.out.println("Middle Name: " + toTitleCase(middleName));
+		System.out.println("Last Name: " + toTitleCase(lastName));
+		System.out.println("Father's Name: " + toTitleCase(fatherName));
+		System.out.println("Mother's Name: " + toTitleCase(motherName));
+		System.out.println("Address: " + toTitleCase(address));
 		
 		scan.close();
 	}
@@ -149,7 +171,7 @@ public class NameAddressValidationMFM {
 		
 		public static void middleNameValidation (String input) throws IOException{
 			if(input == null || input.isBlank()) {
-				throw new IllegalArgumentException("Middle Name cannot be empty. Please try again.");
+				throw new IOException("Middle Name cannot be blank.");
 			}
 			
 			for (int i = 0; i < input.length(); i++) {
@@ -162,14 +184,14 @@ public class NameAddressValidationMFM {
 		        	continue;
 		        }
 		        else {
-		        	throw new IllegalArgumentException("Middle Name cannot contain any special character."); 
+		        	throw new IOException("Middle Name cannot contain any special character."); 
 		        }
 		    }
 		}
 		
 		public static void lastNameValidation (String input) throws IOException{
 			if(input == null || input.isBlank()) {
-				throw new IllegalArgumentException("Last Name cannot be empty. Please try again.");
+				throw new IOException("Last Name cannot be blank.");
 			}
 			
 			for (int i = 0; i < input.length(); i++) {
@@ -182,14 +204,14 @@ public class NameAddressValidationMFM {
 		        	continue;
 		        }
 		        else {
-		        	throw new IllegalArgumentException("Last Name cannot contain any special character."); 
+		        	throw new IOException("Last Name cannot contain any special character."); 
 		        }
 		    }
 		}
 		
 		public static void fatherNameValidation (String input) throws IOException{
 			if(input == null || input.isBlank()) {
-				throw new IllegalArgumentException("Father's Name cannot be empty. Please try again.");
+				throw new IOException("Father's Name cannot be blank.");
 			}
 			
 			for (int i = 0; i < input.length(); i++) {
@@ -202,14 +224,14 @@ public class NameAddressValidationMFM {
 		        	continue;
 		        }
 		        else {
-		        	throw new IllegalArgumentException("Father's Name cannot contain any special character."); 
+		        	throw new IOException("Father's Name cannot contain any special character."); 
 		        }
 		    }
 		}
 		
 		public static void motherNameValidation (String input) throws IOException {
 			if(input == null || input.isBlank()) {
-				throw new IllegalArgumentException("Mother's Name cannot be empty. Please try again.");
+				throw new IOException("Mother's Name cannot be blank.");
 			}
 			
 			for (int i = 0; i < input.length(); i++) {
@@ -222,14 +244,14 @@ public class NameAddressValidationMFM {
 		        	continue;
 		        }
 		        else {
-		        	throw new IllegalArgumentException("Mother's Name cannot contain any special character."); 
+		        	throw new IOException("Mother's Name cannot contain any special character."); 
 		        }
 		    }		
 		}
 		
 		public static void addressValidation (String input) throws IOException {
 			if(input == null || input.trim().isEmpty()) {
-				throw new IllegalArgumentException("Address cannot be empty. Please try again.");
+				throw new IOException("Address cannot be blank.");
 			}
 			
 			for (int i = 0; i < input.length(); i++) {
@@ -242,7 +264,7 @@ public class NameAddressValidationMFM {
 		        	continue;
 		        }
 		        else {
-		        	throw new IllegalArgumentException("Address cannot contain some special character."); 
+		        	throw new IOException("Address cannot contain some special character."); 
 		        }
 		    }
 		}
