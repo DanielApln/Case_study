@@ -34,23 +34,8 @@ class Account {
     public double getBalance() {
         return balance;
     }
-    
-    // Pin code validation method
-    private void validatePin(String pin) throws IllegalArgumentException {
-        if (pin == null || pin.isEmpty()) {
-            throw new IllegalArgumentException("Pin code cannot be empty.");
-        }
-        
-        if (pin.length() != 4) {
-            throw new IllegalArgumentException("Pin code must be exactly 4 digits.");
-        }
-        
-        if (!pin.matches("\\d{4}")) {
-            throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
-        }
-    }
 
-    // 💾 Feature: Save Account Data
+    //  Feature: Save Account Data
     private void saveToFile() {
         // Use relative path for portability. It will save in the program's working directory.
         try (FileWriter writer = new FileWriter("NewAccount.txt", true)) {
@@ -72,6 +57,40 @@ class Account {
             System.out.println("✅ Account successfully saved to NewAccount.txt!");
         } catch (IOException e) {
             System.out.println("❌ Error saving account to file: " + e.getMessage());
+        }
+    }
+
+    //validation Start
+    // Pin code validation method
+    private void validatePin(String pin) throws IllegalArgumentException {
+        if (pin == null || pin.isEmpty()) {
+            throw new IllegalArgumentException("Pin code cannot be empty.");
+        }
+        
+        if (pin.length() != 4) {
+            throw new IllegalArgumentException("Pin code must be exactly 4 digits.");
+        }
+        
+        if (!pin.matches("\\d{4}")) {
+            throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
+        }
+    }
+
+    private void validateContact(String num) throws IllegalArgumentException {
+        if (num == null || num.isBlank()) {
+            throw new IllegalArgumentException("Contact Number cannot be blank.");
+        }
+        
+        // Check if all characters are digits
+        for (int i = 0; i < num.length(); i++) {
+            if (!Character.isDigit(num.charAt(i))) {
+                throw new IllegalArgumentException("Contact Number must only contain numbers.");
+            }
+        }
+
+        // Check if the length is exactly 11 digits
+        if (num.length() != 11) {
+            throw new IllegalArgumentException("Contact Number must be exactly 11 digits.");
         }
     }
 
@@ -141,8 +160,18 @@ class Account {
         System.out.print("Enter Mother's Name: ");
         motherName = sc.nextLine();
 
-        System.out.print("Enter Contact No: ");
-        contactNo = sc.nextLine();
+      while (true) {
+            System.out.print("Enter Contact No (11 digits): ");
+            String contactNo = sc.nextLine();
+            try {
+                validateContact(contactNo); 
+                this.contactNo = contactNo; 
+                break; 
+            } catch (IllegalArgumentException e) {
+                System.out.println(" Validation Error: " + e.getMessage());
+                System.out.println("Please try again.\n");
+            }
+      }
 
         System.out.println("\nInitial Deposit: ₱" + String.format("%.2f", balance));
         System.out.println("🎉 Registration Successful! Your Account Number is: " + accountNo);
