@@ -318,9 +318,9 @@ class Account {
 
         while (true) {
             try {
-                System.out.print("Enter Gender: ");
-                // Delegate the responsibility to the Credentials object
-                credentials.setUsername(sc.nextLine());
+                System.out.print("Enter Gender (M/F/Male/Female): ");
+                String genderInput = sc.nextLine();
+                validateGender(genderInput);
                 break;
             } catch (IOException e) {
                 System.out.println(" Validation Error: " + e.getMessage());
