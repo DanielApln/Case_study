@@ -187,7 +187,7 @@ class Account {
 		        if (Character.isLetterOrDigit(ch)) {
 		        	continue;
 		        }
-		        else if(ch == ' ' || ch == '#' || ch == ',') {
+		        else if(ch == ' ' || ch == '#' || ch == ',' || ch == '.') {
 		        	continue;
 		        }
 		        else {
