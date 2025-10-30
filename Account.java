@@ -5,13 +5,12 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 class Account {
-    // Static counter for the Account Number sequence
+    // Simple account model with validation and file persistence
     private static int accountCounter = 2023100000;
 
     private final Credentials credentials;
 
-    // Better Encapsulation: Make fields private and use public getters/setters if
-    // needed
+    // Account fields (private)
     private int accountNo;
     private String pin;
     private String firstName = "";
@@ -131,12 +130,12 @@ class Account {
         this.credentials = new Credentials();
     }
 
-    // Getter for Balance for Balance Inquiry feature
+    // Get current balance
     public double getBalance() {
         return balance;
     }
 
-    // Feature: Save Account Data
+    // Save account to file
     private void saveToFile() {
         // Use relative path for portability. It will save in the program's working
         // directory.
@@ -156,14 +155,14 @@ class Account {
             writer.write("Contact No: " + contactNo + "\n");
             writer.write("Balance: " + String.format("%.2f", balance) + "\n");
             writer.write("=====================================\n\n");
-            System.out.println(" Account successfully saved to NewAccount.txt!");
+            System.out.println("Account saved to NewAccount.txt!");
         } catch (IOException e) {
             System.out.println(" Error saving account to file: " + e.getMessage());
         }
     }
 
-    // validation Start
-    // Pin code validation method
+    // Validation methods
+    // Validate 4-digit numeric PIN
     private void validatePin(String pin) throws IllegalArgumentException {
         if (pin == null || pin.isEmpty()) {
             throw new IllegalArgumentException("Pin code cannot be empty.");
@@ -178,6 +177,7 @@ class Account {
         }
     }
 
+    // Validate name (letters and spaces only)
     private static void validateName(String input, String fieldName) throws IOException {
         if (input == null || input.isEmpty()) {
             throw new IOException(fieldName + " cannot be blank.");
@@ -187,6 +187,7 @@ class Account {
         }
     }
 
+    // Validate address (allow letters, digits, space, #, comma, dot)
     private static void addressValidation(String input) throws IOException {
         if (input == null || input.trim().isEmpty()) {
             throw new IOException("Address cannot be blank.");
@@ -200,49 +201,45 @@ class Account {
             } else if (ch == ' ' || ch == '#' || ch == ',' || ch == '.') {
                 continue;
             } else {
-                throw new IOException("Address cannot contain some special character.");
+                throw new IOException("Address contains invalid character.");
             }
         }
     }
 
+    // Validate contact number (11 digits)
     private void contactValidation(String num) throws IllegalArgumentException {
         if (num == null || num.isEmpty()) {
             throw new IllegalArgumentException("Contact Number cannot be blank.");
         }
 
-        // Check if all characters are digits
         for (int i = 0; i < num.length(); i++) {
             if (!Character.isDigit(num.charAt(i))) {
-                throw new IllegalArgumentException("Contact Number must only contain numbers.");
+                throw new IllegalArgumentException("Contact Number must contain only digits.");
             }
         }
 
-        // Check if the length is exactly 11 digits
         if (num.length() != 11) {
             throw new IllegalArgumentException("Contact Number must be exactly 11 digits.");
         }
     }
 
+    // Validate birthdate (YYYY-MM-DD, no future dates)
     private void validateBirthdate(String inputDate) throws IllegalArgumentException {
-        // 1. Basic Format Check
         if (!inputDate.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            throw new IllegalArgumentException("Invalid format! Please use YYYY-MM-DD.");
+            throw new IllegalArgumentException("Invalid format. Use YYYY-MM-DD.");
         }
 
-        // 2. Full Date Logic Check (Handles leap years, month boundaries, etc.)
         try {
             LocalDate date = LocalDate.parse(inputDate);
-
-            // 3. Future Date Check
             if (date.isAfter(LocalDate.now())) {
                 throw new IllegalArgumentException("Birthdate cannot be in the future.");
             }
         } catch (DateTimeParseException e) {
-            // Catches errors like '2023-02-30' or '2023-13-01'
-            throw new IllegalArgumentException("Invalid date components (e.g., invalid day/month for the given year).");
+            throw new IllegalArgumentException("Invalid date components.");
         }
     }
 
+    // Validate gender input and normalize
     private String genderValidation(String genderInput) throws IOException {
         if (genderInput == null || genderInput.isBlank()) {
             throw new IOException("Gender cannot be blank.");
@@ -253,22 +250,22 @@ class Account {
         } else if (genderInput.equalsIgnoreCase("F") || genderInput.equalsIgnoreCase("Female")) {
             return "Female";
         } else {
-            throw new IOException("Invalid gender input. Please enter only 'M', 'F', 'Male', or 'Female'.");
+            throw new IOException("Enter 'M' or 'F' (or 'Male'/'Female').");
         }
     }
 
-    // Feature: Register New Account
+    // Guide user to register an account
     public void register(Scanner sc) {
-        System.out.println("\n=== Personal New Bank Account Registration (Account No: " + accountNo + ") ===");
+        System.out.println("\n=== New Bank Account (Account No: " + accountNo + ") ===");
 
-        // --- Credential Setup (Delegation) ---
+        // Credentials (validated by Credentials class)
         while (true) {
             try {
                 System.out.print("Enter Username: ");
                 credentials.setUsername(sc.nextLine());
                 break;
             } catch (IOException e) {
-                System.out.println(" Validation Error: " + e.getMessage());
+                System.out.println("Validation error: " + e.getMessage());
                 System.out.println("Please try again.\n");
             }
         }
@@ -283,9 +280,9 @@ class Account {
                 System.out.println("Please try again.\n");
             }
         }
-        // --- End Credential Setup ---
+    // End credentials
 
-        // Remaining Account Details
+        // Remaining account details (each input is validated)
         while (true) {
             try {
                 System.out.print("Enter Pin code (4 digits): ");
@@ -293,7 +290,7 @@ class Account {
                 setPin(pinInput);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(" Validation Error: " + e.getMessage());
+                System.out.println("Validation error: " + e.getMessage());
                 System.out.println("Please try again.\n");
             }
         }
@@ -407,8 +404,8 @@ class Account {
             }
         }
 
-        System.out.println("\nInitial Deposit: ₱" + String.format("%.2f", balance));
-        System.out.println("🎉 Registration Successful! Your Account Number is: " + accountNo);
+    System.out.println("\nInitial Deposit: ₱" + String.format("%.2f", balance));
+    System.out.println("Registration successful. Account Number: " + accountNo);
 
         saveToFile();
     }

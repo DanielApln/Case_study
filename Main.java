@@ -14,7 +14,7 @@ public class Main {
 
         boolean running = true;
 
-        try { // Outer try-catch to manage the entire application run
+        try { // Main loop
             while (running) {
                 System.out.println("\n========== MAIN MENU ==========");
                 System.out.println("1. Register New Account");
@@ -22,7 +22,7 @@ public class Main {
                 System.out.println("3. Exit");
                 System.out.print("Select option: ");
 
-                try { // Inner try-catch for input validation
+                try { // Read and handle menu choice
                     if (input.hasNextInt()) {
                         int option = input.nextInt();
                         input.nextLine(); // Consume newline
@@ -52,7 +52,7 @@ public class Main {
                 }
             }
         } finally {
-            // CRITICAL FIX: Close the scanner ONLY once the program is completely finished.
+            // Close scanner when done
             if (input != null) {
                 input.close();
                 System.out.println("Scanner closed.");
