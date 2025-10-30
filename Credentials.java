@@ -56,8 +56,8 @@ public class Credentials {
         }
 
         // At least one lowercase, one uppercase, one digit, one special char, and 8–20 chars long
-        if (!input.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$")) {
-            throw new IOException("Password must be 8–20 characters and include uppercase, lowercase, number, and special character.");
+        if (!input.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9])[A-Za-z\\d\\W_]{8,20}$")) {
+            throw new IOException("Password must be 8–20 characters and include uppercase, lowercase, number, and at least one special character.");
         }
     }
 }

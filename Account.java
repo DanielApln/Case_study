@@ -169,12 +169,12 @@ class Account {
             throw new IllegalArgumentException("Pin code cannot be empty.");
         }
 
-        if (!pin.matches("\\d{4}")) {
-            throw new IllegalArgumentException("Pin code must contain only digits (0-9).");
-        }
-
         if (pin.length() != 4) {
             throw new IllegalArgumentException("Pin code must be exactly 4 digits.");
+        }
+
+        if (!pin.matches("\\d+")) {
+            throw new IllegalArgumentException("Pin code must contain only digits (0-9). Letters and special characters are not allowed.");
         }
     }
 
