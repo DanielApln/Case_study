@@ -43,3 +43,33 @@ Contact No: 12345678901
 Balance: 500.00
 =====================================
 
+=====================================
+Account No: 2023100000
+Username: Male
+Password: Cake_Chonky123
+Pin code: 2024
+Full Name: Cake Cute Chonk
+Birthdate: 2024-08-11
+Gender: null
+Address: Kusina
+Father's Name: Wala
+Mother's Name: Lujil 
+Contact No: 09478526146
+Balance: ?500.00
+=====================================
+
+=====================================
+Account No: 2023100001
+Username: MaLe
+Password: MamaMOPassword1231*
+Pin code: 2006
+Full Name: Cake Cute Chonk
+Birthdate: 2024-08-11
+Gender: null
+Address: Kusina
+Father's Name: FATHERLESS
+Mother's Name: Lujil
+Contact No: 09478526146
+Balance: ?500.00
+=====================================
+
