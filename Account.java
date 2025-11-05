@@ -241,7 +241,7 @@ class Account {
 
     // Validate gender input and normalize
     private String genderValidation(String genderInput) throws IOException {
-        if (genderInput == null || genderInput.isBlank()) {
+        if (genderInput == null || genderInput.isEmpty()) {
             throw new IOException("Gender cannot be blank.");
         }
 
