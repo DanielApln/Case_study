@@ -11,7 +11,7 @@ Address: 27L Tullihan Rd. Sta. Quiteria Caloocan City
 Father's Name: Nonito Aplan
 Mother's Name: Emily Aplan 
 Contact No: 09266136327
-Balance: 500.00
+Balance: 950.00
 =====================================
 Account No: 2023100000
 Username: Akgbnag
@@ -24,5 +24,5 @@ Address: fosjaonav
 Father's Name: fnajkn
 Mother's Name: aasa
 Contact No: 12345678901
-Balance: 500.00
+Balance: 950.00
 =====================================
