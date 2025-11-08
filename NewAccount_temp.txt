@@ -22,5 +22,5 @@ Address: caloocan
 Father's Name: Edwin
 Mother's Name: Ester
 Contact No: 12345678901
-Balance: 500.00
+Balance: 10000000300.00
 =====================================
