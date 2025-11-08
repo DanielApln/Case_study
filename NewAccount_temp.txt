@@ -1,28 +1,26 @@
-=====================================
 Account No: 2023100000
-<<<<<<< Updated upstream
-Username: DanielAplan
-Password: 02072006*Da
-Pin code: 1234
-Full Name: Daniel  Sandrino  Aplan 
+Username: Daniel_aplan
+Password: 02072006Da#
+Pin code: 2134
+Full Name: Daniel  Sanrino  Aplan 
 Birthdate: 2006-02-07
-Gender: m
-Address: 27L Tullihan Rd. Sta. Quiteria Caloocan City
-Father's Name: Nonito Aplan
-Mother's Name: Emily Aplan 
+Gender: Male
+Address: 27L tullihan Rd. Sta. Quiteria Caloocan City 
+Father's Name: Nonito 
+Mother's Name: Emily 
 Contact No: 09266136327
-Balance: 950.00
+Balance: 500.00
 =====================================
-Account No: 2023100000
-Username: Akgbnag
-Password: 916579*Da
+Account No: 2023100001
+Username: jere
+Password: ako_Pogi123
 Pin code: 1234
-Full Name: fkbasng dasfa aadgbs
-Birthdate: 2006-02-07
-Gender: m
-Address: fosjaonav
-Father's Name: fnajkn
-Mother's Name: aasa
+Full Name: jm senones ledina
+Birthdate: 2005-09-09
+Gender: male
+Address: caloocan
+Father's Name: Edwin
+Mother's Name: Ester
 Contact No: 12345678901
-Balance: 950.00
+Balance: 10000000300.00
 =====================================
